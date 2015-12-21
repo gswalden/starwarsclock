@@ -71,5 +71,5 @@ gulp.task('default', ['jade', 'less', 'js', 'browser-sync'], () => {
 
 gulp.task('deploy', ['jade', 'less', 'js'], () => {
   return gulp.src(['./dist/**/*', './static/**/*'])
-    .pipe(ghPages({ push: false }));
+    .pipe(ghPages());
 });

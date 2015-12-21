@@ -21,6 +21,6 @@
   },
   "scripts": {
     "postinstall": "bower install",
-    "push": "npm version patch && git push --follow-tags"
+    "push": "npm version patch && git push --follow-tags && gulp deploy"
   }
 }
