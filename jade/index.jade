@@ -1,39 +1,43 @@
 doctype html
 html(lang='en')
   // The source you're looking for: https://github.com/gswalden/starwarsclock
-  include head.jade
+  include head
   body
     #countdown
       #years
-        .num 0
+        .num ∞
         | year
         .plural s
       
       #months
-        .num 0
+        .num ∞
         | month
         .plural s
       
       #days
-        .num 0
+        .num ∞
         | day
         .plural s
       
       #hours
-        .num 0
+        .num ∞
         | hour
         .plural s
 
       #minutes
-        .num 0
+        .num ∞
         | minute
         .plural s
 
       #seconds
-        .num 0
+        .num ∞
         | second
         .plural s
 
-      //- #movie till Rogue One
+      #movie
+        a(href='http://www.starwars.com/films/rogue-one') Rogue One
+        |  opens December 16, 2016
 
-    include scripts.jade
+      #image Image credit to #[a(href='//geekincognito.deviantart.com/') George "Geekincognito" Joseph]
+
+    include scripts
