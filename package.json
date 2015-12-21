@@ -1,7 +1,7 @@
 {
   "name": "starwarsclock",
   "private": true,
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Commence primary ignition!",
   "author": "Greg Walden <hi@gsw.nyc>",
   "license": "ISC",
