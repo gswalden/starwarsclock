@@ -1,0 +1,39 @@
+doctype html
+html(lang='en')
+  // The source you're looking for: https://github.com/gswalden/starwarsclock
+  include head.jade
+  body
+    #countdown
+      #years
+        .num 0
+        | year
+        .plural s
+      
+      #months
+        .num 0
+        | month
+        .plural s
+      
+      #days
+        .num 0
+        | day
+        .plural s
+      
+      #hours
+        .num 0
+        | hour
+        .plural s
+
+      #minutes
+        .num 0
+        | minute
+        .plural s
+
+      #seconds
+        .num 0
+        | second
+        .plural s
+
+      //- #movie till Rogue One
+
+    include scripts.jade
