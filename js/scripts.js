@@ -1,22 +1,7 @@
 !(function(window, document) {
-  // some jquery-esque functions
   function get(id) {
     return document.getElementById(id);
   }
-  function $1(selector, context) {
-    return (context || document).querySelector(selector);
-  }
-  function css(el, styles) {
-    for (var property in styles)
-      el.style[property] = styles[property];
-  }
-  // function windowWidth() {
-  //   return window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-  // }
-  // function windowHeight() {
-  //   return window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-  // }
-  
   function celebrate() {
     window.clearInterval(interval);
     console.log('New Star Wars!');
@@ -41,7 +26,7 @@
   }
 
   var current = {};
-  update();
   var interval = window.setInterval(update, 1000);
+  update();
 
 })(window, document);
