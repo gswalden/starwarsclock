@@ -4,35 +4,11 @@ html(lang='en')
   include head
   body
     #countdown
-      #years
-        .num ∞
-        | year
-        .plural s
-      
-      #months
-        .num ∞
-        | month
-        .plural s
-      
-      #days
-        .num ∞
-        | day
-        .plural s
-      
-      #hours
-        .num ∞
-        | hour
-        .plural s
-
-      #minutes
-        .num ∞
-        | minute
-        .plural s
-
-      #seconds
-        .num ∞
-        | second
-        .plural s
+      ul: each unit in ['year', 'month', 'day', 'hour', 'minute', 'second']
+        li(id=unit + 's')
+          .num ∞
+          =unit
+          .plural s
 
       #movie
         a(href='http://www.starwars.com/films/rogue-one') Rogue One
