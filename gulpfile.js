@@ -4,7 +4,7 @@ const gulp      = require('gulp')
   , browserSync = require('browser-sync').create()
   , reload      = browserSync.reload
   , less        = require('gulp-less')
-  , minifyCSS   = require('gulp-minify-css')
+  , minifyCSS   = require('gulp-cssnano')
   , autoprefixer = require('gulp-autoprefixer')
   , plumber     = require('gulp-plumber')
   , notify      = require('gulp-notify')
@@ -12,6 +12,7 @@ const gulp      = require('gulp')
   , uglify      = require('gulp-uglify')
   , sourcemaps  = require('gulp-sourcemaps')
   , ghPages     = require('gulp-gh-pages')
+  , countdown   = require('countdown')
   , dist        = './dist'
   ;
 
@@ -56,7 +57,9 @@ gulp.task('js', () => {
 gulp.task('jade', () => {
   return gulp.src('jade/index.jade')
     .pipe(plumber())
-    .pipe(jade())
+    .pipe(jade({
+      locals: { description: timeString() }
+    }))
     .pipe(gulp.dest(dist))
     .pipe(notify('Finished file: <%= file.relative %>'));
 });
@@ -71,5 +74,16 @@ gulp.task('default', ['jade', 'less', 'js', 'browser-sync'], () => {
 
 gulp.task('deploy', ['jade', 'less', 'js'], () => {
   return gulp.src(['./dist/**/*', './static/**/*'])
-    .pipe(ghPages());
+    .pipe(ghPages({
+      remoteURL: process.env.REMOTE_URL
+    }));
 });
+
+function timeString() {
+  const time = countdown(new Date(2016, 11, 16));
+  const str = [];
+  if (time.years) str.push(time.years + ' year' + (time.years > 1 ? 's' : ''));
+  if (time.months) str.push(time.months + ' month' + (time.months > 1 ? 's' : ''));
+  if (time.days) str.push(time.days + ' day' + (time.days > 1 ? 's' : ''));
+  return str.join(', ') + ' until Rogue One!';
+}
