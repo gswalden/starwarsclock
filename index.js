@@ -1,3 +1,4 @@
+var ms = require('ms');
 var gulp = require('gulp');
 require('./gulpfile');
 
@@ -7,5 +8,5 @@ function deploy() {
   }
 }
 
-setInterval(deploy, 86400000);
+setInterval(deploy, ms('1day'));
 deploy();
