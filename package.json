@@ -21,6 +21,7 @@
     "gulp-uglify": "^1.2.0"
   },
   "scripts": {
+    "start": "node index.js",
     "postinstall": "bower install",
     "push": "npm version minor && git push --follow-tags && npm run deploy",
     "deploy": "gulp deploy"
