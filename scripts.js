@@ -1,2 +1,32 @@
-!function(e,n){function t(e){return n.getElementById(e)}function o(){e.clearInterval(a),console.log("New Star Wars!")}function r(){var n=e.countdown(new Date(2016,11,16));return n.value>=0?o():void["years","months","days","hours","minutes","seconds"].forEach(function(e){if(s[e]!==n[e]){s[e]=n[e];var o=t(e);if(!n[e]&&"seconds"!==e)return o.classList.add("hide");o.querySelector(".num").textContent=n[e],o.querySelector(".plural").classList.toggle("hide",1===n[e]),o.classList.remove("hide")}})}var s={},a=e.setInterval(r,1e3);r()}(window,document);
-//# sourceMappingURL=maps/scripts.js.map
+!(function(window, document) {
+  function get(id) {
+    return document.getElementById(id);
+  }
+  function celebrate() {
+    window.clearInterval(interval);
+    console.log('New Star Wars!');
+  }
+  function update() {
+    var time = window.countdown(new Date(2016, 11, 16));
+    if (time.value >= 0) {
+      return celebrate();
+    }
+    ['years', 'months', 'days', 'hours', 'minutes', 'seconds'].forEach(function(unit) {
+      if (current[unit] === time[unit]) return;
+      current[unit] = time[unit];
+      var el = get(unit);
+      if (!time[unit] && unit !== 'seconds') {
+        return el.classList.add('hide');
+      }
+
+      el.querySelector('.num').textContent = time[unit];
+      el.querySelector('.plural').classList.toggle('hide', time[unit] === 1);
+      el.classList.remove('hide');
+    })
+  }
+
+  var current = {};
+  var interval = window.setInterval(update, 1000);
+  update();
+
+})(window, document);
