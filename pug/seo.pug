@@ -16,16 +16,16 @@ meta(name='description', itemprop='description', content=seo.description)
 link(rel='canonical', itemprop='url', href=seo.url)
 
 //- Common Items
-- each name in ['title', 'description', 'image']
+each name in ['title', 'description', 'image']
   meta(property='og:' + name, content=seo[name])
   meta(name='twitter:' + name, content=seo[name])
 
 //- Open Graph Specifics
-- each name in ['url']
+each name in ['url']
   meta(property='og:' + name, content=seo[name])
 
 //- Twitter Card Specifics
-- each name in ['card', 'site', 'creator']
+each name in ['card', 'site', 'creator']
   meta(name='twitter:' + name, content=seo[name])
 
 //- Microdata

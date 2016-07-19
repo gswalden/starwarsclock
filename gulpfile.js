@@ -4,13 +4,11 @@ const gulp      = require('gulp')
   , browserSync = require('browser-sync').create()
   , reload      = browserSync.reload
   , less        = require('gulp-less')
-  , minifyCSS   = require('gulp-cssnano')
   , autoprefixer = require('gulp-autoprefixer')
   , plumber     = require('gulp-plumber')
   , notify      = require('gulp-notify')
-  , jade        = require('gulp-jade')
-  , uglify      = require('gulp-uglify')
-  , sourcemaps  = require('gulp-sourcemaps')
+  , pug         = require('gulp-pug')
+  , inline      = require('gulp-inline-source')
   , ghPages     = require('gulp-gh-pages')
   , countdown   = require('countdown')
   , dist        = './dist'
@@ -20,7 +18,7 @@ const gulp      = require('gulp')
 gulp.task('browser-sync', () => {
   browserSync.init({
     server: {
-      baseDir: dist
+      baseDir: [dist, './static']
     }
   });
 });
@@ -28,55 +26,41 @@ gulp.task('browser-sync', () => {
 gulp.task('less', () => {
   return gulp.src('less/*.less')
     .pipe(plumber())
-    .pipe(sourcemaps.init())
     .pipe(less({
-      paths: ['./bower_components']
+      paths: ['./node_modules']
     }))
     .pipe(autoprefixer())
-    .pipe(minifyCSS())
-    .pipe(sourcemaps.write('maps'))
     .pipe(gulp.dest(dist))
-    .pipe(browserSync.stream())
     .pipe(notify('Finished file: <%= file.relative %>'));
 });
 
 gulp.task('js', () => {
-  return gulp.src([/*'./bower_components/countdownjs/countdown.js',*/ 'js/*.js'])
+  return gulp.src(['js/*.js'])
     .pipe(plumber())
-    // .pipe(jshint())
-    // .pipe(jshint.reporter('default'))
-    .pipe(sourcemaps.init())
-    // .pipe(babel())
-    .pipe(uglify())
-    .pipe(sourcemaps.write('maps'))
     .pipe(gulp.dest(dist))
-    .pipe(browserSync.stream())
     .pipe(notify('Finished file: <%= file.relative %>'));
 });
 
-gulp.task('jade', () => {
-  return gulp.src('jade/index.jade')
+gulp.task('pug', ['js', 'less'], () => {
+  return gulp.src('pug/index.pug')
     .pipe(plumber())
-    .pipe(jade({
+    .pipe(pug({
       locals: { description: timeString() }
     }))
+    .pipe(inline())
     .pipe(gulp.dest(dist))
     .pipe(notify('Finished file: <%= file.relative %>'));
 });
 
 // Default task to be run with `gulp`
-gulp.task('default', ['jade', 'less', 'js', 'browser-sync'], () => {
-  gulp.watch('less/*.less', ['less']);
-  gulp.watch('jade/*.jade', ['jade']);
-  gulp.watch('js/*.js', ['js']);
+gulp.task('default', ['pug', 'less', 'js', 'browser-sync'], () => {
+  gulp.watch(['pug/*.pug', 'less/*.less', 'js/*.js'], ['pug']);
   gulp.watch('./dist/*.html').on('change', reload);
 });
 
-gulp.task('deploy', ['jade', 'less', 'js'], () => {
+gulp.task('deploy', ['pug', 'less', 'js'], () => {
   return gulp.src(['./dist/**/*', './static/**/*'])
-    .pipe(ghPages({
-      remoteURL: process.env.REMOTE_URL
-    }));
+    .pipe(ghPages());
 });
 
 function timeString() {
