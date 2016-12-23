@@ -7,7 +7,7 @@
     console.log('New Star Wars!');
   }
   function update() {
-    var time = window.countdown(new Date(2016, 11, 16));
+    var time = window.countdown(new Date(2017, 11, 15));
     if (time.value >= 0) {
       return celebrate();
     }

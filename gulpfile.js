@@ -64,10 +64,10 @@ gulp.task('deploy', ['pug', 'less', 'js'], () => {
 });
 
 function timeString() {
-  const time = countdown(new Date(2016, 11, 16));
+  const time = countdown(new Date(2017, 11, 15));
   const str = [];
   if (time.years) str.push(time.years + ' year' + (time.years > 1 ? 's' : ''));
   if (time.months) str.push(time.months + ' month' + (time.months > 1 ? 's' : ''));
   if (time.days) str.push(time.days + ' day' + (time.days > 1 ? 's' : ''));
-  return str.join(', ') + ' until Rogue One!';
+  return str.join(', ') + ' until Episode VIII!';
 }
