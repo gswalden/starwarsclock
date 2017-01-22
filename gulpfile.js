@@ -12,6 +12,7 @@ const gulp      = require('gulp')
   , ghPages     = require('gulp-gh-pages')
   , countdown   = require('countdown')
   , dist        = './dist'
+  , episodeName = 'Episode VIII'
   ;
 
 // browser-sync task for starting the server.
@@ -45,7 +46,10 @@ gulp.task('pug', ['js', 'less'], () => {
   return gulp.src('pug/index.pug')
     .pipe(plumber())
     .pipe(pug({
-      locals: { description: timeString() }
+      locals: { 
+        description: timeString(),
+        episodeName 
+      }
     }))
     .pipe(inline())
     .pipe(gulp.dest(dist))
@@ -69,5 +73,5 @@ function timeString() {
   if (time.years) str.push(time.years + ' year' + (time.years > 1 ? 's' : ''));
   if (time.months) str.push(time.months + ' month' + (time.months > 1 ? 's' : ''));
   if (time.days) str.push(time.days + ' day' + (time.days > 1 ? 's' : ''));
-  return str.join(', ') + ' until Episode VIII!';
+  return str.join(', ') + `until ${episodeName}!`;
 }
