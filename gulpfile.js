@@ -73,5 +73,5 @@ function timeString() {
   if (time.years) str.push(time.years + ' year' + (time.years > 1 ? 's' : ''));
   if (time.months) str.push(time.months + ' month' + (time.months > 1 ? 's' : ''));
   if (time.days) str.push(time.days + ' day' + (time.days > 1 ? 's' : ''));
-  return str.join(', ') + `until ${episodeName}!`;
+  return str.join(', ') + ` until ${episodeName}!`;
 }
