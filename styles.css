@@ -379,6 +379,7 @@ html {
 body {
   background-size: cover;
   background-image: url('/img/bb8-by-geekincognito.jpg');
+  background-color: #000;
 }
 #countdown {
   font-family: Montserrat, sans-serif;
