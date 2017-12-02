@@ -46,9 +46,9 @@ gulp.task('pug', ['js', 'less'], () => {
   return gulp.src('pug/index.pug')
     .pipe(plumber())
     .pipe(pug({
-      locals: { 
+      locals: {
         description: timeString(),
-        episodeName 
+        episodeName
       }
     }))
     .pipe(inline())
@@ -63,8 +63,12 @@ gulp.task('default', ['pug', 'less', 'js', 'browser-sync'], () => {
 });
 
 gulp.task('deploy', ['pug', 'less', 'js'], () => {
+  const opt = {};
+  if (process.env.REMOTE_URL) {
+    opt.remoteUrl = process.env.REMOTE_URL;
+  }
   return gulp.src(['./dist/**/*', './static/**/*'])
-    .pipe(ghPages());
+    .pipe(ghPages(opt));
 });
 
 function timeString() {
