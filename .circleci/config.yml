@@ -38,3 +38,18 @@ jobs:
             - node_modules
             - ~/.cache/yarn
           key: dependency-cache-{{ checksum "package.json" }}
+
+workflows:
+  version: 2
+  commit-workflow:
+    jobs:
+      - build
+  scheduled-workflow:
+    triggers:
+      - schedule:
+          cron: "0 6 * * *"
+          filters:
+            branches:
+              only: master
+    jobs:
+      - build
