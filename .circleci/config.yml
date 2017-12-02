@@ -1,0 +1,30 @@
+version: 2
+jobs:
+  deploy:
+    docker:
+      - image: circleci/node:8
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+          - dependency-cache-{{ checksum "package.json" }}
+          # fallback to using the latest cache if no exact match is found
+          - dependency-cache-
+
+      - run:
+          name: Install dependencies
+          command: yarn install
+
+      - run:
+          name: Run gulp
+          command: yarn run deploy
+
+      - save_cache:
+          paths:
+            - node_modules
+            - ~/.cache/yarn
+          key: dependency-cache-{{ checksum "package.json" }}
