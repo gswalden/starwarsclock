@@ -16,6 +16,12 @@ jobs:
           - dependency-cache-
 
       - run:
+          name: Setup git user
+          command: |
+            git config --global user.email $MY_EMAIL
+            git config --global user.name $MY_NAME
+
+      - run:
           name: Install dependencies
           command: yarn install
 
