@@ -7,7 +7,7 @@
     document.getElementById('countdown').innerHTML = 'New<br>Star Wars<br>is out!';
   }
   function update() {
-    var time = window.countdown(new Date(2017, 11, 15));
+    var time = window.countdown(new Date(2018, 4, 25));
     if (time.value >= 0) {
       return celebrate();
     }
