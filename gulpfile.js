@@ -12,7 +12,7 @@ const gulp      = require('gulp')
   , ghPages     = require('gulp-gh-pages')
   , countdown   = require('countdown')
   , dist        = './dist'
-  , episodeName = 'Episode VIII: The Last Jedi'
+  , episodeName = 'Solo: A Star Wars Story'
   ;
 
 // browser-sync task for starting the server.
