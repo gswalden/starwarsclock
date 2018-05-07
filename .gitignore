@@ -2,3 +2,4 @@
 /dist
 /.publish
 .vscode
+*.log
