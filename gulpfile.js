@@ -3,6 +3,7 @@
 const gulp      = require('gulp')
   , browserSync = require('browser-sync').create()
   , reload      = browserSync.reload
+  , moment      = require('moment')
   , less        = require('gulp-less')
   , autoprefixer = require('gulp-autoprefixer')
   , plumber     = require('gulp-plumber')
@@ -13,6 +14,8 @@ const gulp      = require('gulp')
   , countdown   = require('countdown')
   , dist        = './dist'
   , episodeName = 'Solo: A Star Wars Story'
+  , nextReleaseArr = require('./nextRelease.json')
+  , nextRelease = new Date(...nextReleaseArr)
   ;
 
 // browser-sync task for starting the server.
@@ -48,7 +51,9 @@ gulp.task('pug', ['js', 'less'], () => {
     .pipe(pug({
       locals: {
         description: timeString(),
-        episodeName
+        episodeName,
+        nextRelease,
+        dateString: moment(nextRelease).format('MMMM D, YYYY')
       }
     }))
     .pipe(inline())
@@ -72,7 +77,7 @@ gulp.task('deploy', ['pug', 'less', 'js'], () => {
 });
 
 function timeString() {
-  const time = countdown(new Date(2018, 4, 25));
+  const time = countdown(nextRelease);
   const str = [];
   if (time.years) str.push(time.years + ' year' + (time.years > 1 ? 's' : ''));
   if (time.months) str.push(time.months + ' month' + (time.months > 1 ? 's' : ''));

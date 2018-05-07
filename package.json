@@ -16,6 +16,7 @@
     "gulp-notify": "^2.2.0",
     "gulp-plumber": "^1.0.0",
     "gulp-pug": "^3.0.3",
+    "moment": "^2.22.1",
     "ms": "^0.7.1",
     "normalize.css": "^4.2.0"
   },

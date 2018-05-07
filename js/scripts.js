@@ -7,7 +7,7 @@
     document.getElementById('countdown').innerHTML = 'New<br>Star Wars<br>is out!';
   }
   function update() {
-    var time = window.countdown(new Date(2018, 4, 25));
+    var time = window.countdown(nextRelease);
     if (time.value >= 0) {
       return celebrate();
     }
