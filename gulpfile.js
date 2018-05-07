@@ -72,7 +72,7 @@ gulp.task('deploy', ['pug', 'less', 'js'], () => {
 });
 
 function timeString() {
-  const time = countdown(new Date(2017, 11, 15));
+  const time = countdown(new Date(2018, 4, 25));
   const str = [];
   if (time.years) str.push(time.years + ' year' + (time.years > 1 ? 's' : ''));
   if (time.months) str.push(time.months + ' month' + (time.months > 1 ? 's' : ''));
