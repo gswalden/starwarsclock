@@ -13,7 +13,7 @@ const gulp      = require('gulp')
   , ghPages     = require('gulp-gh-pages')
   , countdown   = require('countdown')
   , dist        = './dist'
-  , episodeName = 'Solo: A Star Wars Story'
+  , episodeName = 'Star Wars: Episode IX'
   , nextReleaseArr = require('./nextRelease.json')
   , nextRelease = new Date(...nextReleaseArr)
   ;
