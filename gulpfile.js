@@ -10,8 +10,9 @@ const gulp      = require('gulp')
   , notify      = require('gulp-notify')
   , pug         = require('gulp-pug')
   , inline      = require('gulp-inline-source')
-  , ghPages     = require('gulp-gh-pages')
+  , ghPages     = require('gh-pages')
   , countdown   = require('countdown')
+  , del         = require('del')
   , dist        = './dist'
   , episodeName = 'Star Wars: Episode IX'
   , nextReleaseArr = require('./nextRelease.json')
@@ -61,21 +62,29 @@ gulp.task('pug', ['js', 'less'], () => {
     .pipe(notify('Finished file: <%= file.relative %>'));
 });
 
+gulp.task('static', () => {
+  return gulp.src('static/**/*')
+    .pipe(gulp.dest(dist))
+});
+
+gulp.task('clean', () => {
+  del.sync('./dist')
+});
+
 // Default task to be run with `gulp`
 gulp.task('default', ['pug', 'less', 'js', 'browser-sync'], () => {
   gulp.watch(['pug/*.pug', 'less/*.less', 'js/*.js'], ['pug']);
   gulp.watch('./dist/*.html').on('change', reload);
 });
 
-gulp.task('deploy', ['pug', 'less', 'js'], () => {
+gulp.task('deploy', ['clean', 'pug', 'less', 'js', 'static'], cb => {
   const opt = {
     message: `Update ${new Date().toISOString()} [skip ci]`
   };
   if (process.env.REMOTE_URL) {
-    opt.remoteUrl = process.env.REMOTE_URL;
+    opt.repo = process.env.REMOTE_URL;
   }
-  return gulp.src(['./dist/**/*', './static/**/*'])
-    .pipe(ghPages(opt));
+  ghPages.publish('./dist', opt, cb);
 });
 
 function timeString() {

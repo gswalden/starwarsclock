@@ -8,9 +8,10 @@
   "devDependencies": {
     "browser-sync": "^2.7.1",
     "countdown": "^2.6.0",
+    "del": "^3.0.0",
+    "gh-pages": "^1.2.0",
     "gulp": "^3.8.11",
     "gulp-autoprefixer": "^3.0.1",
-    "gulp-gh-pages": "^0.5.4",
     "gulp-inline-source": "^2.1.0",
     "gulp-less": "^3.0.3",
     "gulp-notify": "^2.2.0",
