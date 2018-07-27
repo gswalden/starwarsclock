@@ -68,7 +68,9 @@ gulp.task('default', ['pug', 'less', 'js', 'browser-sync'], () => {
 });
 
 gulp.task('deploy', ['pug', 'less', 'js'], () => {
-  const opt = {};
+  const opt = {
+    message: `Update ${new Date().toISOString()} [skip ci]`
+  };
   if (process.env.REMOTE_URL) {
     opt.remoteUrl = process.env.REMOTE_URL;
   }
