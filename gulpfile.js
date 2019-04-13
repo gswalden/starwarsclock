@@ -14,7 +14,7 @@ const gulp      = require('gulp')
   , countdown   = require('countdown')
   , del         = require('del')
   , dist        = './dist'
-  , episodeName = 'Star Wars: Episode IX'
+  , episodeName = 'Star Wars: The Rise of Skywalker'
   , nextReleaseArr = require('./nextRelease.json')
   , nextRelease = new Date(...nextReleaseArr)
   ;
