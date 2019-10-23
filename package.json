@@ -8,7 +8,7 @@
   "devDependencies": {
     "browser-sync": "^2.7.1",
     "countdown": "^2.6.0",
-    "del": "^3.0.0",
+    "del": "^5.1.0",
     "gh-pages": "^1.2.0",
     "gulp": "^3.8.11",
     "gulp-autoprefixer": "^3.0.1",
