@@ -14,7 +14,7 @@ const gulp      = require('gulp')
   , countdown   = require('countdown')
   , del         = require('del')
   , dist        = './dist'
-  , episodeName = 'Star Wars: The Mandalorian: Season 2'
+  , episodeName = 'Star Wars: The Book of Boba Fett'
   , nextReleaseArr = require('./nextRelease.json')
   , nextRelease = new Date(...nextReleaseArr)
   ;
@@ -54,7 +54,8 @@ gulp.task('pug', ['js', 'less'], () => {
         description: timeString(),
         episodeName,
         nextRelease,
-        dateString: moment(nextRelease).format('MMMM D, YYYY')
+        // dateString: moment(nextRelease).format('MMMM D, YYYY')
+        dateString: moment(nextRelease).format('MMMM YYYY')
       }
     }))
     .pipe(inline())
