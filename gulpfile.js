@@ -54,8 +54,8 @@ gulp.task('pug', ['js', 'less'], () => {
         description: timeString(),
         episodeName,
         nextRelease,
-        // dateString: moment(nextRelease).format('MMMM D, YYYY')
-        dateString: moment(nextRelease).format('MMMM YYYY')
+        dateString: moment(nextRelease).format('MMMM D, YYYY')
+        // dateString: moment(nextRelease).format('MMMM YYYY')
       }
     }))
     .pipe(inline())
