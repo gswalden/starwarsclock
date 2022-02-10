@@ -14,7 +14,7 @@ const gulp      = require('gulp')
   , countdown   = require('countdown')
   , del         = require('del')
   , dist        = './dist'
-  , episodeName = 'Star Wars: The Book of Boba Fett'
+  , episodeName = 'Star Wars: Obi-Wan Kenobi'
   , nextReleaseArr = require('./nextRelease.json')
   , nextRelease = new Date(...nextReleaseArr)
   ;
