@@ -29,4 +29,9 @@
   var interval = window.setInterval(update, 1000);
   update();
 
+  // Display Obi-Wan text while first season is running
+  if (new Date() >= new Date(2022, 5, 22)) {
+    get('obi').classList.add('hide');
+  }
+
 })(window, document);
